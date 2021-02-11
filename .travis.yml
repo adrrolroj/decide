@@ -13,10 +13,12 @@ language: python
 python:
   - "3.6"
 install:
-  - pip3 install -r requirements.txt
-  - pip3 install codacy-coverage
-script:
-  - cd decide
-  - coverage run --branch --source=. ./manage.py test --keepdb --with-xunit
-  - coverage xml
-  - python-codacy-coverage -r coverage.xml
+  - pip install -r requirements.txt
+  - pip install codacy-coverage
+jobs:
+  include:
+    - script:
+      - cd decide
+      - coverage run --branch --source=. ./manage.py test authentication/ --keepdb --with-xunit
+      - coverage xml
+      - python-codacy-coverage -r coverage.xml
