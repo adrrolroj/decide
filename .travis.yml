@@ -20,7 +20,7 @@ jobs:
       - cd decide
       - cp travis_local_settings.py local_settings.py
 deploy:
-  provider: heroku
-  app: decide-adrrolroj-prueba
-  strategy: git
-  apikey: a79e7295-4a97-4675-9021-950f8372bd24
+    provider: heroku
+    app: decide-adrrolroj-prueba
+    strategy: git
+    apikey: a79e7295-4a97-4675-9021-950f8372bd24
