@@ -19,4 +19,3 @@ jobs:
   include:
     - script:
       - cd decide
-      - coverage xml
