@@ -8,15 +8,19 @@ before_script:
   - psql -U postgres -c "create user decide password 'decide'"
   - psql -U postgres -c "create database test_decide owner decide"
   - psql -U postgres -c "ALTER USER decide CREATEDB"
-  - cp decide/local_settings.travis.py decide/local_settings.py
 language: python
 python:
   - "3.6"
 install:
-  - pip3 install -r requirements.txt
-  - pip3 install codacy-coverage
-script:
-  - cd decide
-  - coverage run --branch --source=. ./manage.py test --keepdb --with-xunit
-  - coverage xml
-  - python-codacy-coverage -r coverage.xml
+  - pip install -r requirements.txt
+  - pip install codacy-coverage
+jobs:
+  include:
+    - script:
+      - cd decide
+      - cp travis_local_settings.py local_settings.py
+deploy:
+    provider: heroku
+    app: decide-adrrolroj-prueba
+    strategy: git
+    apikey: a79e7295-4a97-4675-9021-950f8372bd24
